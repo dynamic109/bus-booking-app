@@ -1,0 +1,65 @@
+<div class="gradient-background">
+  <div class="container">
+    <div class="search-card">
+      <h1 class="search-title">
+        <i class="fas fa-ticket-alt"></i> Book Your Bus Ticket
+      </h1>
+
+      <div class="search-form">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group mb-3 md:mb-0">
+              <label><i class="fas fa-map-marker-alt"></i> From</label>
+              <select
+                class="form-select"
+                [(ngModel)]="searchObj.fromLocationId"
+              >
+                <option value="" disabled selected>Select From Location</option>
+                @for (item of locationList; track $index) {
+                <option [value]="item.locationId">{{item.locationName}}</option>
+                }
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group mb-3 md:mb-0">
+              <label><i class="fas fa-map-marker-alt"></i> To</label>
+              <select class="form-select" [(ngModel)]="searchObj.toLocationId">
+                <option value="" disabled selected>Select To Location</option>
+                @for (item of locationList; track $index) {
+                <option [value]="item.locationId">{{item.locationName}}</option>
+                }
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-3">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label><i class="far fa-calendar-alt"></i> Date of Journey</label>
+              <input
+                [(ngModel)]="searchObj.date"
+                type="date"
+                class="form-control"
+                placeholder="dd-mm-yyyy"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-4">
+          <div class="col-12 text-center">
+            <button
+              type="button"
+              (click)="searchBus()"
+              class="btn btn-primary search-button"
+            >
+              <i class="fas fa-search"></i> Search Buses
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

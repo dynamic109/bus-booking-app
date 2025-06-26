@@ -1,0 +1,68 @@
+.gradient-background {
+  min-height: 100vh;
+  background: linear-gradient(45deg, #3a3d63, #7c56a7, #e96a94);
+  background-size: 300% 300%;
+  animation: gradient-animation 10s ease infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.search-card {
+  background-color: white;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.search-title {
+  color: #333;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.search-title i {
+  margin-right: 10px;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: #444;
+  margin-bottom: 8px;
+}
+
+.form-group input {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.search-button {
+  background-color: #5c5ef7;
+  color: white;
+  padding: 12px 35px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  box-shadow: 0 3px 10px rgba(92, 94, 247, 0.3);
+}
+
+.search-button:hover {
+  background-color: #4a4cd8;
+}

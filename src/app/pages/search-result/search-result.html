@@ -1,0 +1,98 @@
+<div class="search-results-container">
+  <div class="container">
+    <div class="results-header">
+      <h2 class="results-title">Available Buses</h2>
+      <div class="action-buttons">
+        <button class="btn btn-outline-primary filter-btn">
+          <i class="fas fa-filter"></i> Filter
+        </button>
+        <button class="btn btn-outline-primary sort-btn">
+          <i class="fas fa-sort"></i> Sort
+        </button>
+      </div>
+    </div>
+
+    <div
+      *ngIf="isLoading"
+      class="d-flex justify-content-center align-items-center"
+      style="height: 200px"
+    >
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+
+    <div *ngIf="!isLoading" class="bus-list">
+      <!-- Bus card -->
+      @for (item of searchData; track $index) {
+      <div class="bus-card">
+        <div class="bus-info">
+          <div class="left-border"></div>
+          <div class="bus-details">
+            <div class="bus-type">
+              <h3><i class="fas fa-bus"></i> {{item.busName}}</h3>
+              <p><i class="fas fa-bed"></i> AC Sleeper</p>
+              <div class="rating-tags">
+                <span class="rating"><i class="fas fa-star"></i> 4.5</span>
+                <span class="fast-tag">Fast</span>
+              </div>
+            </div>
+
+            <div class="journey-details">
+              <div class="journey-time">
+                <h4>Departure</h4>
+                <p>
+                  <i class="far fa-clock"></i> {{item.departureTime | date:
+                  "hh:mm a"}}
+                </p>
+                <p class="date">
+                  <i class="far fa-calendar-alt"></i> {{item.departureTime |
+                  date: "dd MMM, yyyy"}}
+                </p>
+              </div>
+
+              <div class="journey-time">
+                <h4>Duration</h4>
+                <p><i class="fas fa-clock"></i> 8h 30m</p>
+              </div>
+
+              <div class="journey-time">
+                <h4>Arrival</h4>
+                <p>
+                  <i class="far fa-clock"></i> {{item.arrivalTime | date: "hh:mm
+                  a"}}
+                </p>
+                <p class="date">
+                  <i class="far fa-calendar-alt"></i> {{item.arrivalTime | date:
+                  "dd MMM, yyyy"}}
+                </p>
+              </div>
+
+              <div class="price-section">
+                <h4>Price</h4>
+                <p class="price">
+                  <i class="fas fa-rupee-sign"></i> {{item.price}}
+                </p>
+                <p class="best-price">
+                  <i class="fas fa-check-circle"></i> Best Price
+                </p>
+              </div>
+
+              <div class="select-seats">
+                <button
+                  [routerLink]="'/book-ticket/'+ item.scheduleId"
+                  class="btn btn-primary select-btn"
+                >
+                  <i class="fas fa-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      }
+
+      <!-- You can repeat this bus-card for each bus -->
+    </div>
+  </div>
+</div>

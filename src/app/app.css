@@ -1,0 +1,38 @@
+/* app.component.css */
+
+/* Base navbar styles */
+.navbar {
+  background-color: #212936;
+  padding: 0.75rem 1rem;
+}
+
+/* Brand styling */
+.navbar-brand {
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-brand i {
+  margin-right: 0.5rem;
+  font-size: 1.2rem;
+}
+
+/* Nav item styles */
+.nav-link {
+  color: #adb5bd;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+}
+
+.nav-link i {
+  margin-right: 0.5rem;
+}
+
+/* Right-align the nav links */
+.ms-auto {
+  margin-left: auto !important;
+}

@@ -1,0 +1,157 @@
+<div class="booking-container">
+  <!-- Bus Info Header -->
+  <div class="container bus-info-header">
+    <div class="container">
+      <div class="bus-details-card">
+        <div class="bus-header">
+          <h2 class="bus-name">
+            <i class="fas fa-bus"></i> {{scheduleData.busName}}
+          </h2>
+          <div class="route-info">
+            {{scheduleData.busName}}
+            <span class="duration">Duration: 8h 30m</span>
+          </div>
+        </div>
+
+        <div class="journey-time-info">
+          <div class="time-block">
+            <i class="far fa-calendar-alt"></i> {{scheduleData.departureTime |
+            date:'dd-MMM-yy'}} - {{scheduleData.arrivalTime | date:'dd-MMM-yy'}}
+          </div>
+          <div class="time-block">
+            <i class="far fa-clock"></i> {{scheduleData.departureTime |
+            date:'hh:mm:ss'}} - {{scheduleData.departureTime | date:'hh:mm:ss'}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="seat-booking-layout">
+      <!-- Seat Selection Area -->
+      <div class="seat-selection-area col-12 md:col-5">
+        <h3 class="section-title">Select Seats</h3>
+
+        <div class="seat-legend">
+          <div class="legend-item">
+            <span class="seat-box available"></span>
+            <span class="legend-text">Available</span>
+          </div>
+          <div class="legend-item">
+            <span class="seat-box booked"></span>
+            <span class="legend-text">Booked</span>
+          </div>
+          <div class="legend-item">
+            <span class="seat-box selected"></span>
+            <span class="legend-text">Selected</span>
+          </div>
+        </div>
+
+        <div class="bus-layout">
+          <!-- Bus Front -->
+          <div class="bus-front">
+            <i class="fas fa-bus"></i>
+            <span>Front</span>
+          </div>
+
+          <div class="divider"></div>
+        </div>
+
+        <!-- Seat Grid -->
+        <div class="seat-grid">
+          <div class="row">
+            @for (item of seatNoList; track $index) {
+            <div class="col-3">
+              @if (!checkIfSeatIsBooked(item)) {
+              <button
+                (click)="onSelect(item)"
+                class="seat available mb-2"
+                [ngClass]="checkIfSeatIsSelected(item) ? 'selected' : ''"
+              >
+                {{item}}
+              </button>
+
+              }@else { <button class="seat booked mb-2">{{item}}</button>}
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+      <!-- Booking Summary -->
+      <div class="booking-summary col-7">
+        <h3 class="summary-title">Booking Summary</h3>
+
+        <div class="summary-section">
+          <h4>Selected Seats</h4>
+          <div id="selectedSeatsList" class="mb-3">
+            @if (selectedSeatArray.length == 0) {
+            <p class="text-muted mb-0">No seats selectected</p>
+            } @else {
+            <div class="selected-seat-tags">
+              @for (item of selectedSeatArray; track $index) {
+              <span class="badge bg-primary me-2 mb-2"
+                >Seat {{item.seatNo}}</span
+              >
+              }
+            </div>
+            }
+          </div>
+        </div>
+
+        <div class="summary-section">
+          <h4>Contact Details</h4>
+          @for (item of selectedSeatArray; track $index) {
+          <div class="row">
+            <div class="col-12 md:col-3 mb-3 md:mb-0">
+              <label for="email">Name</label>
+              <input
+                [(ngModel)]="item.passengerName"
+                type="name"
+                id="name"
+                class="form-control"
+                placeholder="Enter name"
+              />
+            </div>
+            <div class="col-12 md:col-3 mb-3 md:mb-0">
+              <label for="age">Age</label>
+              <input
+                [(ngModel)]="item.age"
+                type="number"
+                id="age"
+                class="form-control"
+                placeholder="Enter age"
+              />
+            </div>
+            <div class="col-12 md:col-3 mb-3 md:mb-0">
+              <label>Gender</label>
+              <br />
+              <input
+                [(ngModel)]="item.gender"
+                type="radio"
+                [name]="'gender' + $index"
+                value="Male"
+              />
+              Male
+              <input
+                [(ngModel)]="item.gender"
+                type="radio"
+                [name]="'gender' + $index"
+                value="Female"
+              />Female
+            </div>
+          </div>
+          }
+        </div>
+
+        <button
+          type="button"
+          (click)="bookTicket()"
+          class="btn btn-primary payment-btn"
+        >
+          <i class="fas fa-credit-card"></i> Book Ticket
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
